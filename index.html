@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para el Amor de mi Vida</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, #ffeef4 0%, #ffb3ba 50%, #ffdfdf 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Corazones flotantes */
+        .floating-heart {
+            position: fixed;
+            color: rgba(220, 20, 60, 0.6);
+            font-size: 20px;
+            animation: float 8s infinite linear;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Encabezado */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 2s ease-out;
+        }
+
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #8b1538;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #a0457c;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 1s forwards;
+        }
+
+        /* Carta principal */
+        .love-letter {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border: 2px solid #f4c2c2;
+            position: relative;
+            animation: slideInUp 2s ease-out 0.5s both;
+        }
+
+        .love-letter::before {
+            content: '💌';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 2rem;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .letter-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #8b1538;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .letter-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #5d4e75;
+            text-align: justify;
+        }
+
+        .letter-content p {
+            margin-bottom: 20px;
+        }
+
+        /* Sección de cualidades */
+        .qualities-section {
+            background: rgba(255, 240, 245, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            animation: fadeInLeft 2s ease-out 1s both;
+        }
+
+        .qualities-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #8b1538;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .quality-item {
+            background: rgba(255, 255, 255, 0.7);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #d63384;
+            font-size: 1.1rem;
+            color: #5d4e75;
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        .quality-item:nth-child(2) { animation-delay: 1.5s; }
+        .quality-item:nth-child(3) { animation-delay: 1.7s; }
+        .quality-item:nth-child(4) { animation-delay: 1.9s; }
+        .quality-item:nth-child(5) { animation-delay: 2.1s; }
+        .quality-item:nth-child(6) { animation-delay: 2.3s; }
+
+        /* Botón interactivo */
+        .interactive-section {
+            text-align: center;
+            margin: 50px 0;
+            animation: bounceIn 2s ease-out 2s both;
+        }
+
+        .forgive-btn {
+            background: linear-gradient(45deg, #ff6b9d, #ff8fa3);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-family: 'Dancing Script', cursive;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(255, 107, 157, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .forgive-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .forgive-btn:hover::before {
+            left: 100%;
+        }
+
+        .forgive-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .response-message {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            border: 2px solid #ff8fa3;
+            font-size: 1.2rem;
+            color: #8b1538;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.5s ease;
+        }
+
+        .response-message.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            animation: fadeInUp 2s ease-out 2.5s both;
+        }
+
+        .final-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #8b1538;
+            font-weight: 600;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #8b1538;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #8b1538; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .love-letter {
+                padding: 25px;
+            }
+            
+            .letter-content {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Music control */
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ff8fa3;
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .music-control:hover {
+            background: #ff8fa3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="main-title typewriter">Para el Amor de mi Vida</h1>
+            <p class="subtitle">Una carta desde lo más profundo de mi corazón</p>
+        </header>
+
+        <section class="love-letter">
+            <h2 class="letter-title">Perdóname, Mi Amor</h2>
+            <div class="letter-content">
+                <p>Mi amada, mi razón de ser, mi refugio en cada tormenta...</p>
+                
+                <p>Hoy vengo ante ti con el corazón en las manos, reconociendo mis errores y pidiendo tu perdón. Sé que he fallado, que mis palabras y acciones han herido ese corazón tan puro que tanto amo. Perdón por las veces que te hice sentir menos de lo extraordinaria que eres, por cada momento en que mi orgullo fue más fuerte que mi amor.</p>
+                
+                <p>Eres lo más hermoso que me ha pasado en la vida, la luz que ilumina mis días más oscuros y la melodía que hace bailar a mi alma. Cada sonrisa tuya es un regalo del cielo, cada caricia un bálsamo para mis heridas, cada "te amo" susurrando el lenguaje más hermoso que conoce mi corazón.</p>
+                
+                <p>No hay excusa para mis errores, pero hay una promesa eterna: nunca dejaré de luchar por nosotros, por este amor que es más fuerte que mis debilidades. Eres mi hogar, mi paz, mi para siempre... y sin ti, simplemente no soy completo.</p>
+                
+                <p>Te amo con cada fibra de mi ser, con cada latido de mi corazón, con cada respiración que tomo. Perdóname, mi amor, y déjame demostrarte cada día que eres lo más valioso en mi vida.</p>
+            </div>
+        </section>
+
+        <section class="qualities-section">
+            <h2 class="qualities-title">Por qué eres tan especial para mí</h2>
+            <div class="quality-item">💫 <strong>Tu sonrisa</strong> ilumina hasta los días más grises y hace que todo tenga sentido</div>
+            <div class="quality-item">❤️ <strong>Tu corazón noble</strong> que siempre encuentra la forma de amar y perdonar</div>
+            <div class="quality-item">🌹 <strong>Tu belleza natural</strong> que va mucho más allá de lo físico, irradiando desde tu alma</div>
+            <div class="quality-item">✨ <strong>Tu sabiduría</strong> que me guía en los momentos más difíciles</div>
+            <div class="quality-item">🕊️ <strong>Tu paz</strong> que tranquiliza mi mundo cuando todo es caos</div>
+        </section>
+
+        <section class="interactive-section">
+            <button class="forgive-btn" onclick="showResponse()">
+                💕 ¿Me perdonas, mi amor? 💕
+            </button>
+            <div class="response-message" id="responseMessage">
+                <p><strong>Tu perdón es el regalo más hermoso que podrías darme.</strong></p>
+                <p>Prometo amarte, respetarte y cuidarte como el tesoro que eres para mí. ✨</p>
+            </div>
+        </section>
+
+        <footer>
+            <div class="final-message">
+                Te amo más allá de mis errores.<br>
+                Para siempre y por siempre tuyo ❤️
+            </div>
+        </footer>
+    </div>
+
+    <div class="music-control" onclick="toggleMusic()" id="musicControl">
+        🎵 Activar música
+    </div>
+
+    <script>
+        // Crear corazones flotantes
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            heart.style.opacity = Math.random() * 0.7 + 0.3;
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        // Crear corazones cada 2 segundos
+        setInterval(createFloatingHeart, 2000);
+
+        // Respuesta del botón
+        function showResponse() {
+            const responseMessage = document.getElementById('responseMessage');
+            const button = document.querySelector('.forgive-btn');
+            
+            button.innerHTML = '💖 ¡Gracias por tu perdón! 💖';
+            button.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+            
+            responseMessage.classList.add('show');
+            
+            // Crear explosión de corazones
+            for(let i = 0; i < 20; i++) {
+                setTimeout(() => createFloatingHeart(), i * 100);
+            }
+        }
+
+        // Frases románticas aleatorias
+        const romanticPhrases = [
+            "Eres mi sol en los días nublados ☀️",
+            "Contigo el tiempo se detiene ⏰",
+            "Tu amor es mi fuerza y mi paz 💪",
+            "Eres mi sueño hecho realidad 💭",
+            "Tu risa es mi melodía favorita 🎵",
+            "Eres mi hogar, donde sea que estés 🏠",
+            "Tu amor es mi refugio seguro 🏰"
+        ];
+
+        // Mostrar frases aleatorias cada 10 segundos
+        setInterval(() => {
+            const phrase = romanticPhrases[Math.floor(Math.random() * romanticPhrases.length)];
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: rgba(255, 182, 193, 0.95);
+                color: #8b1538;
+                padding: 15px 25px;
+                border-radius: 25px;
+                font-family: 'Dancing Script', cursive;
+                font-size: 1.1rem;
+                z-index: 1000;
+                animation: slideInRight 0.5s ease-out;
+                border: 2px solid #ff8fa3;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            `;
+            notification.textContent = phrase;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.5s ease-out forwards';
+                setTimeout(() => notification.remove(), 500);
+            }, 4000);
+        }, 15000);
+
+        // Control de música (simulado)
+        let musicPlaying = false;
+        function toggleMusic() {
+            const control = document.getElementById('musicControl');
+            if (!musicPlaying) {
+                control.innerHTML = '🎵 Pausar música';
+                control.style.background = '#ff8fa3';
+                control.style.color = 'white';
+                musicPlaying = true;
+            } else {
+                control.innerHTML = '🎵 Activar música';
+                control.style.background = 'rgba(255, 255, 255, 0.9)';
+                control.style.color = '#8b1538';
+                musicPlaying = false;
+            }
+        }
+
+        // Efecto de partículas de corazón al mover el mouse
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() < 0.1) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '💖';
+                heart.style.cssText = `
+                    position: fixed;
+                    left: ${e.clientX}px;
+                    top: ${e.clientY}px;
+                    pointer-events: none;
+                    font-size: 12px;
+                    z-index: 1000;
+                    animation: fadeOut 2s ease-out forwards;
+                `;
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 2000);
+            }
+        });
+
+        // Animación de fadeOut para las partículas del mouse
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                0% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateY(-50px);
+                }
+            }
+            
+            @keyframes slideOutRight {
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
